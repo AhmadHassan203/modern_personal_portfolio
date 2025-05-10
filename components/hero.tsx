@@ -241,7 +241,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.9 }}
                 transition={{ duration: 0.2 }}
               >
-                <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <Link href="https://github.com/AhmadHassan203" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
                 </Link>
