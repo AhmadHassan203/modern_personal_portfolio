@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       secure: true, // use SSL
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD, // Updated to match your .env variable name
+        pass: process.env.EMAIL_PASSWORD,
       },
     })
 
