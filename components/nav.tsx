@@ -59,7 +59,7 @@ export default function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-background pt-16 px-4"
+          className="fixed inset-0 z-50 bg-background pt-16 px-4 overflow-y-auto"
         >
           <Button
             variant="ghost"
@@ -70,27 +70,30 @@ export default function Navbar() {
           >
             <X className="h-6 w-6" />
           </Button>
-          <nav className="flex flex-col items-center gap-6 text-lg">
+          <nav className="flex flex-col items-center gap-6 text-lg pb-8">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "transition-colors hover:text-primary w-full text-center py-3",
+                  "transition-colors hover:text-primary w-full text-center py-4 text-xl",
                   pathname === item.href
                     ? "text-primary font-medium"
                     : "text-muted-foreground"
                 )}
                 onClick={(e) => {
-                  // Only prevent default for hash links
                   if (item.href.startsWith("#")) {
                     e.preventDefault();
-                    const section = document.querySelector(item.href);
-                    if (section) {
-                      section.scrollIntoView({ behavior: "smooth" });
-                    }
+                    setIsOpen(false);
+                    setTimeout(() => {
+                      const section = document.querySelector(item.href);
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }, 100);
+                  } else {
+                    setIsOpen(false);
                   }
-                  setIsOpen(false);
                 }}
               >
                 {item.label}
