@@ -74,37 +74,37 @@ export default function Education() {
 
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-10 md:pl-0`}>
-                  <Card className="overflow-hidden animated-gradient hover:shadow-lg transition-all duration-300">
+                  <Card className="overflow-hidden animated-gradient hover:shadow-lg transition-all duration-300 w-full">
                     <CardHeader className="bg-primary/5 border-b border-primary/10">
-                      <CardTitle className="flex items-center gap-2">
-                        <GraduationCap className="h-5 w-5 text-primary" />
-                        {item.degree}
+                      <CardTitle className="flex items-center gap-2 flex-wrap">
+                        <GraduationCap className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="break-words">{item.degree}</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-6">
                       <div className="space-y-4">
-                        <h4 className="text-lg font-semibold">{item.institution}</h4>
+                        <h4 className="text-lg font-semibold break-words">{item.institution}</h4>
 
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4 text-primary" />
+                          <div className="flex items-center gap-1 flex-shrink-0">
+                            <Calendar className="h-4 w-4 text-primary flex-shrink-0" />
                             <span>{item.duration}</span>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <MapPin className="h-4 w-4 text-primary" />
-                            <span>{item.location}</span>
+                          <div className="flex items-center gap-1 flex-shrink-0">
+                            <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
+                            <span className="break-words">{item.location}</span>
                           </div>
                         </div>
 
-                        <p className="text-muted-foreground">{item.description}</p>
+                        <p className="text-muted-foreground break-words">{item.description}</p>
 
                         <div className="pt-2">
                           <h5 className="text-sm font-semibold flex items-center gap-1 mb-2">
-                            <Award className="h-4 w-4 text-primary" /> Achievements
+                            <Award className="h-4 w-4 text-primary flex-shrink-0" /> Achievements
                           </h5>
                           <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
                             {item.achievements.map((achievement, i) => (
-                              <li key={i}>{achievement}</li>
+                              <li key={i} className="break-words">{achievement}</li>
                             ))}
                           </ul>
                         </div>

@@ -168,6 +168,45 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 relative z-10 flex flex-col justify-center min-h-[calc(100vh-5rem)]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Mobile Profile Picture - Only visible on small screens */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex justify-center items-center lg:hidden mb-6"
+          >
+            <div className="relative">
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    "0 0 20px 5px rgba(var(--primary-rgb), 0.3)",
+                    "0 0 30px 8px rgba(var(--primary-rgb), 0.5)",
+                    "0 0 20px 5px rgba(var(--primary-rgb), 0.3)",
+                  ],
+                }}
+                transition={{
+                  repeat: Number.POSITIVE_INFINITY,
+                  duration: 3,
+                  ease: "easeInOut",
+                }}
+                className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30"
+              >
+                <Image src="/hero-profile.jpg" alt="Ahmad Hassan" fill className="object-cover" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    repeat: Number.POSITIVE_INFINITY,
+                    duration: 10,
+                    ease: "linear",
+                  }}
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -267,12 +306,12 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Profile image - now visible on all screen sizes */}
+          {/* Desktop Profile Picture - Only visible on large screens */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center items-center"
+            className="hidden lg:flex justify-center items-center"
             style={{ y: calculateParallax(0.15) }} // Subtle downward movement on scroll
           >
             {/* Circular profile image with animation - now visible on small screens too */}

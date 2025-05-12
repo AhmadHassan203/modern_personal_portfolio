@@ -9,6 +9,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function Contact() {
   const { toast } = useToast()
@@ -17,12 +24,17 @@ export default function Contact() {
     email: "",
     subject: "",
     message: "",
+    queryType: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
@@ -45,7 +57,7 @@ export default function Contact() {
 
       if (response.ok) {
         setIsSubmitted(true)
-        setFormData({ name: "", email: "", subject: "", message: "" })
+        setFormData({ name: "", email: "", subject: "", message: "", queryType: "" })
 
         toast({
           title: "Message sent successfully!",
@@ -59,6 +71,7 @@ export default function Contact() {
           name: formData.name,
           subject: formData.subject,
           message: formData.message,
+          queryType: formData.queryType,
         })
 
         // Reset success message after 5 seconds
@@ -216,20 +229,45 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="subject" className="text-sm font-medium">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Subject"
-                    required
-                    className="transition-all duration-300 focus:border-primary"
-                  />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="queryType" className="text-sm font-medium">
+                      Query Type
+                    </label>
+                    <Select
+                      value={formData.queryType}
+                      onValueChange={(value) => handleSelectChange("queryType", value)}
+                      required
+                    >
+                      <SelectTrigger className="transition-all duration-300 focus:border-primary">
+                        <SelectValue placeholder="Select query type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="general">General Inquiry</SelectItem>
+                        <SelectItem value="project">Project Proposal</SelectItem>
+                        <SelectItem value="job">Job Opportunity</SelectItem>
+                        <SelectItem value="collaboration">Collaboration</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="subject" className="text-sm font-medium">
+                      Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="Subject"
+                      required
+                      className="transition-all duration-300 focus:border-primary"
+                    />
+                  </div>
                 </div>
+
                 <div className="flex flex-col gap-2">
                   <label htmlFor="message" className="text-sm font-medium">
                     Message
