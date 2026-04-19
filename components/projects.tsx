@@ -10,6 +10,16 @@ import { Badge } from "@/components/ui/badge"
 
 // Updated projects based on CV and new additions
 const projects = [
+  {
+    title: "QutabCSP",
+    description:
+      "A comprehensive website for QutabCSP providing services and information.",
+    image: "/qutubcsp.png",
+    tags: ["Website", "Responsive Design", "Web Project"],
+    category: "Website",
+    liveUrl: "https://www.qutabcsp.com/",
+    githubUrl: "https://github.com/AhmadHassan203/QUTUB",
+  },
   // {
   //   title: "CineFind",
   //   description:
@@ -20,7 +30,7 @@ const projects = [
   //   liveUrl: "#",
   //   githubUrl: "#",
   // },
-  
+
   {
     title: "RideTunez",
     description:
@@ -79,7 +89,7 @@ const projects = [
   //   liveUrl: "#",
   //   githubUrl: "#",
   // },
-  
+
 ]
 
 const categories = [
@@ -179,11 +189,10 @@ export default function Projects() {
             <motion.button
               key={category.name}
               onClick={() => setActiveCategory(category.name)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                activeCategory === category.name
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted hover:bg-muted/80 text-foreground"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category.name
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted hover:bg-muted/80 text-foreground"
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}

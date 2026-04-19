@@ -122,7 +122,7 @@ export default function About() {
 
             <div className="mt-4">
               <Button asChild className="group transition-transform duration-200 hover:scale-105">
-                <a href="/Resume.pdf" download="Ahmad_Hassan_Resume.pdf">
+                <a href="/resume(ahmad_hassan).pdf" download="resume(ahmad_hassan).pdf">
                   <FileText className="mr-2 h-4 w-4 group-hover:animate-bounce" /> Download Resume
                 </a>
               </Button>
